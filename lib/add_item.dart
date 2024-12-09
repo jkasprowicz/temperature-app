@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'models.dart';
+import 'temperature_record.dart';
 
 class AddItemPage extends StatefulWidget {
   final Function(Item) onAddItem;

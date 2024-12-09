@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'models.dart';
+import 'temperature_record.dart';
 import 'package:intl/intl.dart';
 
 class ViewTemperaturesPage extends StatefulWidget {

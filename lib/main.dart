@@ -1,6 +1,6 @@
 // main.dart
 import 'package:flutter/material.dart';
-import 'models.dart';
+import 'temperature_record.dart';
 import 'add_item.dart';
 import 'enter_temperature.dart';
 import 'view_temperatures.dart';
