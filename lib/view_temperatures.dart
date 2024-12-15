@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'temperature_record.dart';
+import 'models/temperature_record.dart';
 import 'package:intl/intl.dart';
 
 class ViewTemperaturesPage extends StatefulWidget {
-  final List<Item> items;
+  final List<TemperatureRecord> items;
 
   ViewTemperaturesPage({required this.items});
 
@@ -14,8 +14,8 @@ class ViewTemperaturesPage extends StatefulWidget {
 class _ViewTemperaturesPageState extends State<ViewTemperaturesPage> {
   DateTime? _startDate;
   DateTime? _endDate;
-  Item? _selectedItem;
-  List<Item> _filteredItems = [];
+  TemperatureRecord? _selectedItem;
+  List<TemperatureRecord> _filteredItems = [];
 
   // Function to filter the items based on user input
   void _applyFilters() {
@@ -95,20 +95,20 @@ class _ViewTemperaturesPageState extends State<ViewTemperaturesPage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      DropdownButton<Item>(
+                      DropdownButton<TemperatureRecord>(
                         hint: Text("Selecionar"),
                         value: _selectedItem,
-                        onChanged: (Item? newValue) {
+                        onChanged: (TemperatureRecord? newValue) {
                           setState(() {
                             _selectedItem = newValue;
                           });
                         },
-                        items: widget.items.map((Item item) {
-                          return DropdownMenuItem<Item>(
-                            value: item,
-                            child: Text('${item.name} - Code: ${item.code}'),
-                          );
-                        }).toList(),
+                      items: widget.items.map((TemperatureRecord item) {
+                        return DropdownMenuItem<TemperatureRecord>(
+                          value: item,
+                          child: Text('${item.name} - Code: ${item.code}'),
+                        );
+                      }).toList(),
                       ),
                       SizedBox(height: 16), // Spacing between dropdown and button
                       ElevatedButton(

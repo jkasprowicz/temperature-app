@@ -1,6 +1,6 @@
 // main.dart
 import 'package:flutter/material.dart';
-import 'temperature_record.dart';
+import 'models/temperature_record.dart';
 import 'add_item.dart';
 import 'enter_temperature.dart';
 import 'view_temperatures.dart';
@@ -10,7 +10,7 @@ void main() {
 }
 
 class TemperatureApp extends StatelessWidget {
-  final List<Item> items = [];
+  final List<TemperatureRecord> items = [];
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +25,11 @@ class TemperatureApp extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
-  final List<Item> items;
+  final List<TemperatureRecord> items;
 
   HomePage({required this.items});
 
-  void addItem(Item item) {
+  void addItem(TemperatureRecord item) {
     items.add(item);
   }
 

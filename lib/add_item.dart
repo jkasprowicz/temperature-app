@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'temperature_record.dart';
+import 'models/temperature_record.dart';
+
 
 class AddItemPage extends StatefulWidget {
-  final Function(Item) onAddItem;
+  final Function(TemperatureRecord) onAddItem;
 
   AddItemPage({required this.onAddItem});
 
@@ -19,7 +20,7 @@ class _AddItemPageState extends State<AddItemPage> {
     final name = nameController.text;
 
     if (code.isNotEmpty && name.isNotEmpty) {
-      widget.onAddItem(Item(code: code, name: name));
+      widget.onAddItem(TemperatureRecord(code: code, name: name));
       Navigator.pop(context);
     }
   }

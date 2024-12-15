@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'temperature_record.dart';
+import 'models/temperature_record.dart';
+
 
 class EnterTemperaturePage extends StatefulWidget {
   final List<Item> items;
