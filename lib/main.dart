@@ -69,10 +69,29 @@ class HomePage extends StatelessWidget {
               icon: Icons.view_list,
               label: 'Verificar Temperaturas',
               onTap: () {
+                // Before passing items to ViewTemperaturesPage, group them by code and name
+                Map<String, TemperatureList> groupedItems = {};
+
+                // Group records by code and name
+                for (var record in items) {
+                  String key = '${record.code}_${record.name}';
+                  if (!groupedItems.containsKey(key)) {
+                    groupedItems[key] = TemperatureList(
+                      code: record.code,
+                      name: record.name,
+                      temperatureRecords: [],
+                    );
+                  }
+                  groupedItems[key]!.temperatureRecords.add(record);
+                }
+
+                // Convert the map values to a list
+                List<TemperatureList> groupedList = groupedItems.values.toList();
+
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ViewTemperaturesPage(items: items),
+                    builder: (context) => ViewTemperaturesPage(items: groupedList),
                   ),
                 );
               },

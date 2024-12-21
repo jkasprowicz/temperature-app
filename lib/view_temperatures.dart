@@ -3,7 +3,7 @@ import 'models/temperature_record.dart';
 import 'package:intl/intl.dart';
 
 class ViewTemperaturesPage extends StatefulWidget {
-  final List<TemperatureRecord> items;
+  final List<TemperatureList> items;
 
   ViewTemperaturesPage({required this.items});
 
@@ -14,8 +14,8 @@ class ViewTemperaturesPage extends StatefulWidget {
 class _ViewTemperaturesPageState extends State<ViewTemperaturesPage> {
   DateTime? _startDate;
   DateTime? _endDate;
-  TemperatureRecord? _selectedItem;
-  List<TemperatureRecord> _filteredItems = [];
+  TemperatureList? _selectedItem;
+  List<TemperatureList> _filteredItems = [];
 
   // Function to filter the items based on user input
   void _applyFilters() {
@@ -95,16 +95,16 @@ class _ViewTemperaturesPageState extends State<ViewTemperaturesPage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      DropdownButton<TemperatureRecord>(
+                      DropdownButton<TemperatureList>(
                         hint: Text("Selecionar"),
                         value: _selectedItem,
-                        onChanged: (TemperatureRecord? newValue) {
+                        onChanged: (TemperatureList? newValue) {
                           setState(() {
                             _selectedItem = newValue;
                           });
                         },
-                      items: widget.items.map((TemperatureRecord item) {
-                        return DropdownMenuItem<TemperatureRecord>(
+                      items: widget.items.map((TemperatureList item) {
+                        return DropdownMenuItem<TemperatureList>(
                           value: item,
                           child: Text('${item.name} - Code: ${item.code}'),
                         );

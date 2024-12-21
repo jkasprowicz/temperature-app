@@ -3,7 +3,7 @@ import 'models/temperature_record.dart';
 
 
 class EnterTemperaturePage extends StatefulWidget {
-  final List<Item> items;
+  final List<TemperatureRecord> items;
 
   EnterTemperaturePage({required this.items});
 
@@ -16,7 +16,7 @@ class _EnterTemperaturePageState extends State<EnterTemperaturePage> {
 
   void addTemperatureEntry() {
     setState(() {
-      // Initialize a new entry with nulls for Item and empty text controllers
+      // Initialize a new entry with nulls for TemperatureRecord and empty text controllers
       temperatureEntries.add({
         'item': null,
         'temperatureController': TextEditingController(),
@@ -46,14 +46,20 @@ class _EnterTemperaturePageState extends State<EnterTemperaturePage> {
     if (valid) {
       setState(() {
         for (var entry in temperatureEntries) {
-          final selectedItem = entry['item'] as Item;
+          final selectedItem = entry['item'] as TemperatureRecord;
           final temperature = double.tryParse(entry['temperatureController'].text);
           final minTemp = double.tryParse(entry['minController'].text);
           final maxTemp = double.tryParse(entry['maxController'].text);
 
           if (temperature != null && minTemp != null && maxTemp != null) {
-            selectedItem.addTemperature(temperature); // Register temperature in model
-            // Add additional logic for min/max storage if needed
+            // Create a new temperature record with updated temperature
+            TemperatureRecord newRecord = TemperatureRecord(
+              code: selectedItem.code,
+              name: selectedItem.name,
+              date: DateTime.now(),
+              temperature: temperature
+            );
+            // Here you would likely want to save the new record to your database
           }
         }
         temperatureEntries.clear(); // Clear entries after submission
@@ -83,16 +89,16 @@ class _EnterTemperaturePageState extends State<EnterTemperaturePage> {
                     padding: EdgeInsets.all(16),
                     child: Column(
                       children: [
-                        DropdownButton<Item>(
+                        DropdownButton<TemperatureRecord>(
                           hint: Text("Selecionar"),
                           value: entry['item'],
-                          onChanged: (Item? newItem) {
+                          onChanged: (TemperatureRecord? newItem) {
                             setState(() {
                               entry['item'] = newItem;
                             });
                           },
-                          items: widget.items.map((Item item) {
-                            return DropdownMenuItem<Item>(
+                          items: widget.items.map((TemperatureRecord item) {
+                            return DropdownMenuItem<TemperatureRecord>(
                               value: item,
                               child: Text('${item.name} - Code: ${item.code}'),
                             );

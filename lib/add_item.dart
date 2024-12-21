@@ -14,13 +14,17 @@ class AddItemPage extends StatefulWidget {
 class _AddItemPageState extends State<AddItemPage> {
   final codeController = TextEditingController();
   final nameController = TextEditingController();
-
   void addItem() {
     final code = codeController.text;
     final name = nameController.text;
 
     if (code.isNotEmpty && name.isNotEmpty) {
-      widget.onAddItem(TemperatureRecord(code: code, name: name));
+      widget.onAddItem(TemperatureRecord(
+        code: code,
+        name: name,
+        date: DateTime.now(),
+        temperature: 0.0,
+      ));
       Navigator.pop(context);
     }
   }

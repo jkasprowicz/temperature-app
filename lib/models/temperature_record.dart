@@ -36,3 +36,15 @@ class TemperatureRecord {
     );
   }
 }
+
+class TemperatureList {
+  final String code;
+  final String name;
+  List<TemperatureRecord> temperatureRecords;
+
+  TemperatureList({
+    required this.code,
+    required this.name,
+    required this.temperatureRecords,
+  });
+}
